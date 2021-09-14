@@ -15,7 +15,7 @@ $dsn = DB_SQL_DRIVER . ':host=' . DB_HOSTNAME . ';dbname=' . DB_NAME . ';port=' 
 $database = new Database($dsn, DB_USER_NAME, DB_USER_PWD);
 
 echo "\n>>>>> Test selectMany:\n";
-$res = $database->fetchRecords("SELECT * FROM roles", []);
+$res = $database->fetchRecords("SELECT * FROM roles");
 var_dump($res);
 
 echo "\n>>>>> Test selectOne:\n";

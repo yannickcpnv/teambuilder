@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config/env.php';
+
 class Database
 {
 
@@ -30,7 +32,7 @@ class Database
 
     /**
      * DatabaseManager destructor.
-     * Close the connection
+     * Close the connection.
      */
     public function __destruct() { $this->closeConnection(); }
 

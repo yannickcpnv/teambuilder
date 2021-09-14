@@ -1,9 +1,16 @@
 {
     "name": "yannick.baudraz/teambuilder",
     "autoload": {
+        "classmap": [
+            "src/"
+        ],
         "psr-4": {
-            "YannickBaudraz\\App\\": "src/"
-        }
+            "TeamBuilder\\src\\": "src/",
+            "TeamBuilder\\test\\": "test/"
+        },
+        "files": [
+            "config/env.php"
+        ]
     },
     "authors": [
         {
