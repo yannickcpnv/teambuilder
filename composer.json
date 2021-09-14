@@ -1,0 +1,17 @@
+{
+    "name": "yannick.baudraz/teambuilder",
+    "autoload": {
+        "psr-4": {
+            "YannickBaudraz\\App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yannick Baudraz",
+            "email": "yannick.baudraz@cpnv.ch"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
