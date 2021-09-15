@@ -1,6 +1,9 @@
 <?php
 
-require_once 'config/env.php';
+namespace TeamBuilder\model;
+
+use PDO;
+use PDOStatement;
 
 class Database
 {
@@ -9,25 +12,17 @@ class Database
     private PDOStatement $statement;
 
     /**
-     * Instantiate a new database object. Use the singleton pattern.
+     * Instantiate a new database object.
      *
-     * @param string $dsn
-     * @param string $username
-     * @param string $password
+     * @param string $dsn      The Data Source Name, contains the information required to connect to the database.
+     * @param string $username The username for the DSN string.
+     * @param string $password The password for the DSN string.
      */
     public function __construct(string $dsn, string $username, string $password)
     {
-        if (isset($this->connection)) {
-            $this->closeConnection();
-        }
-
-        try {
-            $this->connection = new PDO($dsn, DB_USER_NAME, DB_USER_PWD);
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        } catch (PDOException $exception) {
-            die($exception->getMessage());
-        }
+        $this->connection = new PDO($dsn, $username, $password);
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
     /**
@@ -39,8 +34,9 @@ class Database
     /**
      * Returns the result of an executed query.
      *
-     * @param string     $query
-     * @param array|null $queryArray
+     * @param string     $query      The query, be correctly build for sql syntax.
+     * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
+     *                               statement being executed.
      *
      * @return array
      */
@@ -53,8 +49,9 @@ class Database
     /**
      * Return a single row of an executed query.
      *
-     * @param string     $query
-     * @param array|null $queryArray
+     * @param string     $query      The query, be correctly build for sql syntax.
+     * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
+     *                               statement being executed.
      *
      * @return array
      */
@@ -67,22 +64,24 @@ class Database
     /**
      * Insert data from an executed query.
      *
-     * @param string $query
-     * @param array  $queryArray
+     * @param string $query          The query, be correctly build for sql syntax.
+     * @param array  $queryArray     An array of values with as many elements as there are bound parameters in the SQL
+     *                               statement being executed.
      *
-     * @return string
+     * @return int
      */
-    public function insert(string $query, array $queryArray): string
+    public function insert(string $query, array $queryArray): int
     {
         $this->executeQuery($query, $queryArray);
-        return $this->connection->lastInsertId();
+        return intval($this->connection->lastInsertId());
     }
 
     /**
      * Update data from an executed query.
      *
-     * @param string $query
-     * @param array  $queryArray
+     * @param string $query          The query, be correctly build for sql syntax.
+     * @param array  $queryArray     An array of values with as many elements as there are bound parameters in the SQL
+     *                               statement being executed.
      *
      * @return int
      */
@@ -95,25 +94,13 @@ class Database
     /**
      * Execute a query received as parameter.
      *
-     * @param string     $query Must be correctly build for sql syntax.
-     * @param array|null $queryArray
+     * @param string     $query      The query, be correctly build for sql syntax.
+     * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
+     *                               statement being executed.
      *
      * @return void True if the query is ok, otherwise false.
      */
-    public function execute(string $query, array $queryArray = null): void
-    {
-        $this->executeQuery($query, $queryArray);
-    }
-
-    /**
-     * Execute a query received as parameter.
-     *
-     * @param string     $query Must be correctly build for sql syntax.
-     * @param array|null $queryArray
-     *
-     * @return void True if the query is ok, otherwise false.
-     */
-    private function executeQuery(string $query, array $queryArray = null): void
+    public function executeQuery(string $query, array $queryArray = null): void
     {
         $this->statement = $this->connection->prepare($query);
         $this->statement->execute($queryArray);

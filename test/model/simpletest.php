@@ -6,13 +6,18 @@
  * Modified last :
  **/
 
-$rootDir = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR;
+namespace TeamBuilder\model;
 
-require $rootDir . 'src/model/Database.php';
-require $rootDir . 'config/env.php';
+use TeamBuilder\config\Conf;
 
-$dsn = DB_SQL_DRIVER . ':host=' . DB_HOSTNAME . ';dbname=' . DB_NAME . ';port=' . DB_PORT . ';charset=' . DB_CHARSET;
-$database = new Database($dsn, DB_USER_NAME, DB_USER_PWD);
+require '../../vendor/autoload.php';
+
+$dsn = Conf::DB_SQL_DRIVER .
+       ':host=' . Conf::DB_HOSTNAME .
+       ';dbname=' . Conf::DB_NAME .
+       ';port=' . Conf::DB_PORT .
+       ';charset=' . Conf::DB_CHARSET;
+$database = new Database($dsn, Conf::DB_USER_NAME, Conf::DB_USER_PWD);
 
 echo "\n>>>>> Test selectMany:\n";
 $res = $database->fetchRecords("SELECT * FROM roles");
@@ -36,6 +41,7 @@ $res = $database->update(
 );
 var_dump($res);
 
-$database->execute(file_get_contents($rootDir . 'sql/create_teambuilder_and_inserts.sql'));
+$sqlFilePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . "sql/create_teambuilder_and_inserts.sql";
+$database->executeQuery(file_get_contents($sqlFilePath));
 
 echo "\nDone\n";
