@@ -29,13 +29,13 @@ class DatabaseTest extends TestCase
     {
         /* Given */
         $this->query = "SELECT * FROM roles";
-        $expectedRowCount = 2;
+        $expectedRolesQuantity = 2;
 
         /* When */
-        $result = $this->database->fetchRecords($this->query);
+        $roles = $this->database->fetchRecords($this->query);
 
         /* Then */
-        $this->assertCount($expectedRowCount, $result);
+        $this->assertCount($expectedRolesQuantity, $roles);
     }
 
     public function testFetchOne_roleWhereSlugMug_allRoles()
@@ -54,19 +54,21 @@ class DatabaseTest extends TestCase
     public function testInsert_slugWithName_rowId()
     {
         /* Given */
-        $this->query = "UPDATE roles set name = :name WHERE slug = :slug";
-        $expectedRowCount = 2;
 
         /* When */
-
         /* Then */
     }
 
     public function testUpdate_roleWithName_rowCount()
     {
         /* Given */
+        $this->query = "UPDATE roles set name = :name WHERE slug = :slug";
+        $expectedRowCount = 2;
 
         /* When */
+        $result = $this->database->update($this->query, ["slug" => "XXX", "name" => "Slasher"]);
+
         /* Then */
+        $this->assertEquals($expectedRowCount, $result);
     }
 }
