@@ -19,6 +19,9 @@ $dsn = Conf::DB_SQL_DRIVER .
        ';charset=' . Conf::DB_CHARSET;
 $database = new Database($dsn, Conf::DB_USER_NAME, Conf::DB_USER_PWD);
 
+$sqlFilePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . "sql/create_teambuilder_and_inserts.sql";
+$database->executeQuery(file_get_contents($sqlFilePath));
+
 echo "\n>>>>> Test selectMany:\n";
 $res = $database->fetchRecords("SELECT * FROM roles");
 var_dump($res);
@@ -40,8 +43,5 @@ $res = $database->update(
     ["slug" => "XXX", "name" => "Correcteur"]
 );
 var_dump($res);
-
-$sqlFilePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . "sql/create_teambuilder_and_inserts.sql";
-$database->executeQuery(file_get_contents($sqlFilePath));
 
 echo "\nDone\n";

@@ -21,6 +21,10 @@ class DatabaseTest extends TestCase
                ';port=' . Conf::DB_PORT .
                ';charset=' . Conf::DB_CHARSET;
         $this->database = new Database($dsn, Conf::DB_USER_NAME, Conf::DB_USER_PWD);
+    }
+
+    protected function setUp(): void
+    {
         $sqlFilePath = file_get_contents(dirname(__DIR__, 2) . '/sql/create_teambuilder_and_inserts.sql');
         $this->database->executeQuery($sqlFilePath);
     }
@@ -54,19 +58,24 @@ class DatabaseTest extends TestCase
     public function testInsert_slugWithName_rowId()
     {
         /* Given */
+        $this->query = "INSERT INTO roles(slug,name) VALUES (:slug, :name)";
+        $expectedId = 3;
 
         /* When */
+        $result = $this->database->insert($this->query, ["slug" => "XXX", "name" => "Slasher"]);
+
         /* Then */
+        $this->assertEquals($expectedId, $result);
     }
 
     public function testUpdate_roleWithName_rowCount()
     {
         /* Given */
         $this->query = "UPDATE roles set name = :name WHERE slug = :slug";
-        $expectedRowCount = 2;
+        $expectedRowCount = 1;
 
         /* When */
-        $result = $this->database->update($this->query, ["slug" => "XXX", "name" => "Slasher"]);
+        $result = $this->database->update($this->query, ["name" => "Slasher", "slug" => "MOD"]);
 
         /* Then */
         $this->assertEquals($expectedRowCount, $result);

@@ -38,7 +38,7 @@ class Database
      * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return array
+     * @return array - An array of all the records (arrays too).
      */
     public function fetchRecords(string $query, array $queryArray = null): array
     {
@@ -53,7 +53,7 @@ class Database
      * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return array
+     * @return array - An array that represent the record.
      */
     public function fetchOne(string $query, array $queryArray = null): array
     {
@@ -68,7 +68,7 @@ class Database
      * @param array  $queryArray     An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return int
+     * @return int - The new inserted ID.
      */
     public function insert(string $query, array $queryArray): int
     {
@@ -83,7 +83,7 @@ class Database
      * @param array  $queryArray     An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return int
+     * @return int - The number of rows affected.
      */
     public function update(string $query, array $queryArray): int
     {
@@ -98,12 +98,12 @@ class Database
      * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return void True if the query is ok, otherwise false.
+     * @return bool True if the query is ok, otherwise false.
      */
-    public function executeQuery(string $query, array $queryArray = null): void
+    public function executeQuery(string $query, array $queryArray = null): bool
     {
         $this->statement = $this->connection->prepare($query);
-        $this->statement->execute($queryArray);
+        return $this->statement->execute($queryArray);
     }
 
     /**
