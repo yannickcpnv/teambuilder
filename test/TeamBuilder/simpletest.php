@@ -8,18 +8,11 @@
 
 namespace TeamBuilder\model;
 
-use TeamBuilder\config\Conf;
-
 require '../../vendor/autoload.php';
 
-$dsn = Conf::DB_SQL_DRIVER .
-       ':host=' . Conf::DB_HOSTNAME .
-       ';dbname=' . Conf::DB_NAME .
-       ';port=' . Conf::DB_PORT .
-       ';charset=' . Conf::DB_CHARSET;
-$database = new Database($dsn, Conf::DB_USER_NAME, Conf::DB_USER_PWD);
+$database = new Database($_ENV['DB_DSN'], $_ENV['DB_USER_NAME'], $_ENV['DB_USER_PWD']);
 
-$sqlFilePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . "sql/create_teambuilder_and_inserts.sql";
+$sqlFilePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR;
 $database->executeQuery(file_get_contents($sqlFilePath));
 
 echo "\n>>>>> Test selectMany:\n";

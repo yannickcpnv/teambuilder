@@ -2,9 +2,8 @@
 
 namespace TeamBuilder\model;
 
-use TeamBuilder\config\Conf;
+use TeamBuilder\TestHelper;
 use PHPUnit\Framework\TestCase;
-use TeamBuilder\test\TestHelper;
 
 class DatabaseTest extends TestCase
 {
@@ -16,7 +15,7 @@ class DatabaseTest extends TestCase
     {
         parent::__construct();
 
-        $this->database = new Database(Conf::getDsn(), Conf::DB_USER_NAME, Conf::DB_USER_PWD);
+        $this->database = new Database($_ENV['DB_DSN'], $_ENV['DB_USER_NAME'], $_ENV['DB_USER_PWD']);
     }
 
     protected function setUp(): void

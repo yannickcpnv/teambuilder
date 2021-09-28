@@ -2,8 +2,8 @@
 
 namespace TeamBuilder\model;
 
+use TeamBuilder\TestHelper;
 use PHPUnit\Framework\TestCase;
-use TeamBuilder\test\TestHelper;
 
 class MemberTest extends TestCase
 {

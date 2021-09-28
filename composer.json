@@ -6,9 +6,11 @@
                 "src/model",
                 "test/model"
             ],
-            "TeamBuilder\\config\\": "config",
             "TeamBuilder\\test\\": "test"
-        }
+        },
+        "files": [
+            "config/config.php"
+        ]
     },
     "authors": [
         {
@@ -20,6 +22,7 @@
         "phpunit/phpunit": "^9.5"
     },
     "require": {
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.3"
     }
 }

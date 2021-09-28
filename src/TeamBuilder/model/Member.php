@@ -3,7 +3,6 @@
 namespace TeamBuilder\model;
 
 use PDOException;
-use TeamBuilder\config\Conf;
 use JetBrains\PhpStorm\Pure;
 
 class Member extends Model
@@ -150,7 +149,7 @@ class Member extends Model
 
     private static function createDatabase(): Database
     {
-        return new Database(Conf::getDsn(), Conf::DB_USER_NAME, Conf::DB_USER_PWD);
+        return new Database($_ENV['DB_DSN'], $_ENV['DB_USER_NAME'], $_ENV['DB_USER_PWD']);
     }
 
     //endregion
