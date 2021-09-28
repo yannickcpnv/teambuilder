@@ -6,7 +6,8 @@
                 "src/model",
                 "test/model"
             ],
-            "TeamBuilder\\config\\": "config/"
+            "TeamBuilder\\config\\": "config",
+            "TeamBuilder\\test\\": "test"
         }
     },
     "authors": [

@@ -4,6 +4,7 @@ namespace TeamBuilder\model;
 
 use TeamBuilder\config\Conf;
 use PHPUnit\Framework\TestCase;
+use TeamBuilder\test\TestHelper;
 
 class DatabaseTest extends TestCase
 {
@@ -15,18 +16,12 @@ class DatabaseTest extends TestCase
     {
         parent::__construct();
 
-        $dsn = Conf::DB_SQL_DRIVER .
-               ':host=' . Conf::DB_HOSTNAME .
-               ';dbname=' . Conf::DB_NAME .
-               ';port=' . Conf::DB_PORT .
-               ';charset=' . Conf::DB_CHARSET;
-        $this->database = new Database($dsn, Conf::DB_USER_NAME, Conf::DB_USER_PWD);
+        $this->database = new Database(Conf::getDsn(), Conf::DB_USER_NAME, Conf::DB_USER_PWD);
     }
 
     protected function setUp(): void
     {
-        $sqlFilePath = file_get_contents(dirname(__DIR__, 2) . '/sql/create_teambuilder_and_inserts.sql');
-        $this->database->executeQuery($sqlFilePath);
+        TestHelper::createDatabase();
     }
 
     public function testFetchRecords_roles_allRoles()
