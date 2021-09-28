@@ -6,6 +6,7 @@ use PDOException;
 use TeamBuilder\config\Conf;
 use JetBrains\PhpStorm\Pure;
 use phpDocumentor\Reflection\Types\This;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Member
 {
@@ -48,7 +49,9 @@ class Member
 
     public static function where(string $searched, int $id): array
     {
-        return [];
+        $query = "SELECT * FROM members WHERE $searched = :id";
+
+        return self::createDatabase()->fetchRecords($query, ["id" => $id]);
     }
 
     public static function destroy(int $id): bool
