@@ -53,9 +53,9 @@ class Database
      * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return array - An array that represent the record.
+     * @return array|false - An array that represent the record, false if the record doesn't exist.
      */
-    public function fetchOne(string $query, array $queryArray = null): array
+    public function fetchOne(string $query, array $queryArray = null): array|false
     {
         $this->executeQuery($query, $queryArray);
         return $this->statement->fetch();
@@ -89,6 +89,11 @@ class Database
     {
         $this->executeQuery($query, $queryArray);
         return $this->statement->rowCount();
+    }
+
+    public function delete(string $query, array $queryArray): int
+    {
+        return $this->executeQuery($query, $queryArray);
     }
 
     /**
