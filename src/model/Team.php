@@ -2,7 +2,7 @@
 
 namespace TeamBuilder\model;
 
-class Team
+class Team extends Model
 {
 
     public function create()

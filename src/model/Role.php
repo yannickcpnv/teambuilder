@@ -2,7 +2,7 @@
 
 namespace TeamBuilder\model;
 
-class Role
+class Role extends Model
 {
 
     public function create()
