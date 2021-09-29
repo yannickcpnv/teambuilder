@@ -1,6 +1,6 @@
 <?php
 
-namespace TeamBuilder\model;
+namespace TeamBuilder\model\entity;
 
 use TeamBuilder\TestHelper;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +14,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\MemberMember::all()
+     * @covers \TeamBuilder\model\entity\MemberMember::all()
      */
     public function testAll()
     {
@@ -22,7 +22,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member::find(id)
+     * @covers \TeamBuilder\model\entity\Member::find(id)
      */
     public function testFind()
     {
@@ -32,7 +32,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member::where(criteria)
+     * @covers \TeamBuilder\model\entity\Member::where(criteria)
      */
     public function testWhere()
     {
@@ -41,7 +41,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member->create()
+     * @covers \TeamBuilder\model\entity\Member->create()
      * @depends testAll
      */
     public function testCreate()
@@ -52,7 +52,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member->save()
+     * @covers \TeamBuilder\model\entity\Member->save()
      */
     public function testSave()
     {
@@ -66,7 +66,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member->save() doesn't allow duplicates
+     * @covers \TeamBuilder\model\entity\Member->save() doesn't allow duplicates
      */
     public function testSaveRejectsDuplicates()
     {
@@ -76,7 +76,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member->delete()
+     * @covers \TeamBuilder\model\entity\Member->delete()
      */
     public function testDelete()
     {
@@ -90,7 +90,7 @@ class MemberTest extends TestCase
     }
 
     /**
-     * @covers \TeamBuilder\model\Member::destroy(id)
+     * @covers \TeamBuilder\model\entity\Member::destroy(id)
      */
     public function testDestroy()
     {

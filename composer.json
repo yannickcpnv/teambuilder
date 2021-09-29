@@ -3,10 +3,12 @@
     "autoload": {
         "psr-4": {
             "TeamBuilder\\model\\": [
-                "src/model",
-                "test/model"
+                "src/TeamBuilder/model",
+                "test/TeamBuilder/model"
             ],
-            "TeamBuilder\\test\\": "test"
+            "TeamBuilder\\": [
+                "test/TeamBuilder"
+            ]
         },
         "files": [
             "config/config.php"
