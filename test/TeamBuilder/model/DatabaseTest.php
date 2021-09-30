@@ -4,6 +4,7 @@ namespace TeamBuilder\model;
 
 use TeamBuilder\TestHelper;
 use PHPUnit\Framework\TestCase;
+use TeamBuilder\model\entity\Role;
 
 class DatabaseTest extends TestCase
 {
@@ -30,7 +31,7 @@ class DatabaseTest extends TestCase
         $expectedRolesQuantity = 2;
 
         /* When */
-        $roles = $this->database->fetchRecords($this->query);
+        $roles = $this->database->fetchRecords($this->query, Role::class);
 
         /* Then */
         $this->assertCount($expectedRolesQuantity, $roles);
@@ -43,10 +44,10 @@ class DatabaseTest extends TestCase
         $expectedRoleName = "Moderator";
 
         /* When */
-        $result = $this->database->fetchOne($this->query, ["slug" => "MOD"]);
+        $result = $this->database->fetchOne($this->query, Role::class, ["slug" => "MOD"]);
 
         /* Then */
-        $this->assertEquals($expectedRoleName, $result["name"]);
+        $this->assertEquals($expectedRoleName, $result->name);
     }
 
     public function testInsert_slugWithName_rowId()

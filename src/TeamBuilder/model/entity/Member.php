@@ -36,7 +36,7 @@ class Member extends Entity
     {
         $query = "SELECT * FROM members WHERE $column = :id";
 
-        return self::createDatabase()->fetchRecords($query, ["id" => $value]);
+        return self::createDatabase()->fetchRecords($query, Member::class, ["id" => $value]);
     }
     //endregion
 }

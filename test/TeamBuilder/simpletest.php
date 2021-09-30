@@ -20,7 +20,7 @@ $res = $database->fetchRecords("SELECT * FROM roles");
 var_dump($res);
 
 echo "\n>>>>> Test selectOne:\n";
-$res = $database->fetchOne("SELECT * FROM roles where slug = :slug", ["slug" => "MOD"]);
+$res = $database->fetchOne("SELECT * FROM roles where slug = :slug", ["slug" => "MOD"], ["slug" => "MOD"]);
 var_dump($res);
 
 echo "\n>>>>> Test insert:\n";

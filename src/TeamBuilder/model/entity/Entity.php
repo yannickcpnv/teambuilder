@@ -33,7 +33,7 @@ abstract class Entity
         $tableName = self::getTableName();
         $query = "SELECT * FROM $tableName";
 
-        return self::createDatabase()->fetchRecords($query);
+        return self::createDatabase()->fetchRecords($query, static::class);
     }
 
     public static function find(int $id): ?Entity
@@ -41,9 +41,9 @@ abstract class Entity
         $tableName = self::getTableName();
         $query = "SELECT * FROM $tableName WHERE id=:id";
         $queryArray = ["id" => $id];
-        $result = self::createDatabase()->fetchOne($query, $queryArray);
+        $result = self::createDatabase()->fetchOne($query, static::class, $queryArray);
 
-        return $result ? self::make($result) : null;
+        return $result ?: null;
     }
 
     public static function destroy(int $id): bool

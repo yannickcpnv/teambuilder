@@ -3,7 +3,10 @@
 namespace TeamBuilder\model;
 
 use PDO;
+use stdClass;
 use PDOStatement;
+use TeamBuilder\model\entity\Entity;
+use TeamBuilder\model\entity\Member;
 
 class Database
 {
@@ -22,7 +25,6 @@ class Database
     {
         $this->connection = new PDO($dsn, $username, $password);
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
     /**
@@ -35,14 +37,16 @@ class Database
      * Returns the result of an executed query.
      *
      * @param string     $query      The query, be correctly build for sql syntax.
+     * @param string     $className  Name of the class type wanted in return.
      * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
      * @return array - An array of all the records (arrays too).
      */
-    public function fetchRecords(string $query, array $queryArray = null): array
+    public function fetchRecords(string $query, string $className, array $queryArray = null): array
     {
         $this->executeQuery($query, $queryArray);
+        $this->statement->setFetchMode(PDO::FETCH_CLASS, $className);
         return $this->statement->fetchAll();
     }
 
@@ -50,14 +54,16 @@ class Database
      * Return a single row of an executed query.
      *
      * @param string     $query      The query, be correctly build for sql syntax.
+     * @param string     $className  Name of the class type wanted in return.
      * @param array|null $queryArray An array of values with as many elements as there are bound parameters in the SQL
      *                               statement being executed.
      *
-     * @return array|false - An array that represent the record, false if the record doesn't exist.
+     * @return Entity|false - An entity that represent the record, false if the record doesn't exist.
      */
-    public function fetchOne(string $query, array $queryArray = null): array|false
+    public function fetchOne(string $query, string $className, array $queryArray = null): Entity|false
     {
         $this->executeQuery($query, $queryArray);
+        $this->statement->setFetchMode(PDO::FETCH_CLASS, $className);
         return $this->statement->fetch();
     }
 
