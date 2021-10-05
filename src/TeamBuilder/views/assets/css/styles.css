@@ -1,0 +1,51 @@
+/* Teal Light scheme (Default) */
+/* Can be forced with data-theme="light" */
+[data-theme="dark"] {
+  --primary: #00897b;
+  --primary-hover: #00796b;
+  --primary-focus: rgba(0, 137, 123, 0.125);
+  --primary-inverse: #fff;
+}
+
+[data-theme="light"] {
+  --primary: #00897b;
+  --primary-hover: #00796b;
+  --primary-focus: rgba(0, 137, 123, 0.125);
+  --primary-inverse: #fff;
+}
+
+/* Teal (Common styles) */
+:root {
+  --primary: #00897b;
+  --primary-hover: #00796b;
+  --primary-focus: rgba(0, 137, 123, 0.125);
+  --primary-inverse: #fff;
+  --form-element-active-border-color: var(--primary);
+  --form-element-focus-color: var(--primary-focus);
+  --switch-color: var(--primary-inverse);
+  --switch-checked-background-color: var(--primary);
+  --spacing-custom: 3rem;
+}
+
+.flex-container {
+  display: flex;
+}
+
+/* Header */
+.hero {
+  background-color: #23232d;
+  background-position: center;
+  background-size: cover;
+}
+
+header {
+  padding: 0 0;
+}
+
+header hgroup > :last-child {
+  color: var(--h3-color);
+}
+
+header hgroup {
+  margin-bottom: var(--spacing-custom);
+}

@@ -2,12 +2,13 @@
     "name": "yannick.baudraz/teambuilder",
     "autoload": {
         "psr-4": {
+            "TeamBuilder\\": [
+                "test/TeamBuilder"
+            ],
+            "TeamBuilder\\controller\\": "src/TeamBuilder/controller",
             "TeamBuilder\\model\\": [
                 "src/TeamBuilder/model",
                 "test/TeamBuilder/model"
-            ],
-            "TeamBuilder\\": [
-                "test/TeamBuilder"
             ]
         },
         "files": [
