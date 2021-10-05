@@ -2,8 +2,6 @@
 
 namespace TeamBuilder\model\entity;
 
-use PDOException;
-
 class Member extends Entity
 {
 
@@ -38,5 +36,6 @@ class Member extends Entity
 
         return self::createDatabase()->fetchRecords($query, Member::class, ["id" => $value]);
     }
+
     //endregion
 }

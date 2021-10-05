@@ -3,10 +3,8 @@
 namespace TeamBuilder\model;
 
 use PDO;
-use stdClass;
 use PDOStatement;
 use TeamBuilder\model\entity\Entity;
-use TeamBuilder\model\entity\Member;
 
 class Database
 {
