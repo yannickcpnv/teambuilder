@@ -21,6 +21,11 @@
             "email": "yannick.baudraz@cpnv.ch"
         }
     ],
+    "scripts": {
+        "post-install-cmd": [
+            "npm install"
+        ]
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },

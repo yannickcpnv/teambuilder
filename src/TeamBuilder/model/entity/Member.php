@@ -17,9 +17,23 @@ class Member extends Entity
 
     //region Methods
 
+    /**
+     * Get all teams of the member.
+     *
+     * @return Team[] An array of team.
+     */
     public function teams(): array
     {
-        return [];
+        $query = "
+            SELECT t.id, t.name, t.state_id
+            FROM members as m
+                 INNER JOIN team_member tm on m.id = tm.member_id
+                 INNER JOIN teams t on tm.team_id = t.id
+            WHERE m.id=:id
+        ";
+        $queryArray = ['id' => $this->id];
+
+        return self::createDatabase()->fetchRecords($query, Team::class, $queryArray);
     }
 
     /**

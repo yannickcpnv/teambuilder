@@ -12,6 +12,6 @@ class SessionController
      */
     public function createSession()
     {
-        $_SESSION['web-user'] = Member::find($_ENV['WEB_USER_ID']);
+        $_SESSION['web-user'] = serialize(Member::find($_ENV['WEB_USER_ID']));
     }
 }

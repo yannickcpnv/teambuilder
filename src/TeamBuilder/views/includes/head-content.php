@@ -5,10 +5,8 @@
 >
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<link href="/src/TeamBuilder/views/assets/css/tailwind.css" rel="stylesheet">
-
 <!-- Pico -->
-<link href="/src/TeamBuilder/views/assets/css/pico.min.css" rel="stylesheet">
+<link href="/src/TeamBuilder/views/assets/css/pico.css" rel="stylesheet">
 
 <!-- Custom -->
 <link href="/src/TeamBuilder/views/assets/css/styles.css" rel="stylesheet">

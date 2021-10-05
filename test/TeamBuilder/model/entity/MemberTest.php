@@ -105,7 +105,7 @@ class MemberTest extends TestCase
     /**
      * Assume the well-know dataset of 'teambuilder.sql'
      *
-     * @covers Member ->teams()
+     * @covers \TeamBuilder\model\entity\Member::teams
      */
     public function testTeams()
     {

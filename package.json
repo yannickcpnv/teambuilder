@@ -1,0 +1,28 @@
+{
+    "name": "teambuilder",
+    "version": "1.0.0",
+    "description": "TeamBuilder is a PHP application for the module PRW-1.",
+    "main": " ",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@picocss/pico": "^1.3.3"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yannickcpnv/teambuilder.git"
+    },
+    "author": {
+        "name": "Yannick Baudraz",
+        "email": "yannick.baudraz@cpnv.ch"
+    },
+    "bugs": {
+        "url": "https://github.com/yannickcpnv/teambuilder/issues"
+    },
+    "homepage": "https://github.com/yannickcpnv/teambuilder#readme"
+}

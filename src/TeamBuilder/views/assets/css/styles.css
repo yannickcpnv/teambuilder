@@ -27,7 +27,7 @@
   --spacing-custom: 3rem;
 }
 
-.flex-container {
+.flex {
   display: flex;
 }
 
@@ -39,13 +39,9 @@
 }
 
 header {
-  padding: 0 0;
+  padding-bottom: 1rem;
 }
 
 header hgroup > :last-child {
   color: var(--h3-color);
-}
-
-header hgroup {
-  margin-bottom: var(--spacing-custom);
 }

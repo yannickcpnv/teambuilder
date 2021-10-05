@@ -3,8 +3,7 @@
 ob_start();
 ?>
 
-    <p><a href="#" role="button" onclick="event.preventDefault()">Call to action</a></p>
-
+    <p><a href="?action=members-list" role="button">Liste des membres</a></p>
 
 <?php
 $content = ob_get_clean();

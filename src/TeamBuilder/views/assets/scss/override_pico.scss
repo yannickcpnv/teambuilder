@@ -1,0 +1,8 @@
+/* Custom Teal version */
+
+// Override default variables
+$primary-500: #009688;
+$primary-600: #00897B;
+$primary-700: #00796B;
+
+@import "../../../../../node_modules/@picocss/pico/scss/pico";
