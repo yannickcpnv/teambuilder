@@ -2,6 +2,8 @@
 
 namespace TeamBuilder\model;
 
+use Collator;
+
 class ArrayHelpers
 {
 
@@ -18,14 +20,9 @@ class ArrayHelpers
         usort($array, function ($a, $b) use ($property) {
             $al = strtolower($a->$property);
             $bl = strtolower($b->$property);
+            $collator = new Collator('sk_SK.utf8');
 
-            if ($al == $bl) {
-                return 0;
-            } elseif ($al > $bl) {
-                return 1;
-            } else {
-                return -1;
-            }
+            return $collator->compare($al, $bl);
         });
 
         return $array;

@@ -9,6 +9,8 @@ use TeamBuilder\model\entity\Entity;
 class Database
 {
 
+    private static Database $instance;
+
     private PDO|null     $connection;
     private PDOStatement $statement;
 
@@ -25,11 +27,14 @@ class Database
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    /**
-     * DatabaseManager destructor.
-     * Close the connection.
-     */
-    public function __destruct() { $this->closeConnection(); }
+    public static function getInstance(string $dsn = null, string $username = null, string $password = null): Database
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new Database($dsn, $username, $password);
+        }
+
+        return self::$instance;
+    }
 
     /**
      * Returns the result of an executed query.
@@ -114,6 +119,12 @@ class Database
         $this->statement = $this->connection->prepare($query);
         return $this->statement->execute($queryArray);
     }
+
+    /**
+     * DatabaseManager destructor.
+     * Close the connection.
+     */
+    public function __destruct() { $this->closeConnection(); }
 
     /**
      * Close the connection with the database.

@@ -14,4 +14,9 @@ class SessionController
     {
         $_SESSION['web-user'] = serialize(Member::find($_ENV['WEB_USER_ID']));
     }
+
+    public function getUser(): Member
+    {
+        return unserialize($_SESSION['web-user']);
+    }
 }

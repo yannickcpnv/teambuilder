@@ -11,3 +11,8 @@
 <!-- Custom -->
 <link href="/src/TeamBuilder/views/assets/css/styles.css" rel="stylesheet">
 
+<!-- Font Awesome -->
+<script defer src="/vendor/fortawesome/font-awesome/js/brands.js"></script>
+<script defer src="/vendor/fortawesome/font-awesome/js/solid.js"></script>
+<script defer src="/vendor/fortawesome/font-awesome/js/fontawesome.js"></script>
+

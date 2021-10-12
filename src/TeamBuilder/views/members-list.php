@@ -20,7 +20,9 @@ ob_start();
                     <td>
                         <?= implode(
                             ", ",
-                            array_map(fn($obj) => $obj->name, $member->teams())
+                            array_map(function ($team) {
+                                return "<a href=?action=team-details&team-id=" . $team->id . ">" . $team->name . "</a>";
+                            }, $member->getTeams())
                         ) ?>
                     </td>
                 </tr>

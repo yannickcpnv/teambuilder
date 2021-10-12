@@ -1,6 +1,7 @@
 <?php
 
 use TeamBuilder\controller\HomeController;
+use TeamBuilder\controller\TeamController;
 use TeamBuilder\controller\MemberController;
 use TeamBuilder\controller\SessionController;
 
@@ -20,6 +21,14 @@ if ($action) {
             break;
         case 'members-list':
             (new MemberController())->membersList();
+            break;
+        case 'member-teams':
+            (new MemberController())->memberTeams();
+            break;
+        case 'team-details':
+            isset($_GET['team-id'])
+                ? (new TeamController())->teamDetails($_GET['team-id'])
+                : (new HomeController())->home();
             break;
     }
 } else {

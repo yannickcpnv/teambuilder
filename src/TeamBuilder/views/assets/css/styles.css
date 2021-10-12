@@ -31,6 +31,14 @@
   display: flex;
 }
 
+.flex-end {
+  justify-content: flex-end;
+}
+
+.x-075 {
+  transform: scale(0.75)
+}
+
 /* Header */
 .hero {
   background-color: #23232d;

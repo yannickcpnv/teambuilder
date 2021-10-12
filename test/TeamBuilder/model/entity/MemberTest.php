@@ -105,12 +105,12 @@ class MemberTest extends TestCase
     /**
      * Assume the well-know dataset of 'teambuilder.sql'
      *
-     * @covers \TeamBuilder\model\entity\Member::teams
+     * @covers \TeamBuilder\model\entity\Member::getTeams
      */
     public function testTeams()
     {
-        $this->assertCount(1, Member::find(3)->teams());
-        $this->assertCount(0, Member::find(9)->teams());
-        $this->assertCount(3, Member::find(10)->teams());
+        $this->assertCount(1, Member::find(3)->getTeams());
+        $this->assertCount(0, Member::find(9)->getTeams());
+        $this->assertCount(3, Member::find(10)->getTeams());
     }
 }

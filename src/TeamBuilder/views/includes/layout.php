@@ -23,7 +23,7 @@
             </hgroup>
             <?php
             if ($_SESSION['web-user']): ?>
-                <div class="flex" style="justify-content: flex-end;">
+                <div class="flex flex-end">
                     <p>
                         Vous êtes connecté en tant que :
                         <strong><?= unserialize($_SESSION['web-user'])->name ?></strong>
@@ -31,10 +31,21 @@
                 </div>
             <?php
             endif ?>
+            <p>
+                <a href="?action=member-teams&member-id=<?= unserialize($_SESSION['web-user'])->id ?>"
+                   role="button">
+                    Mes équipes
+                </a>
+                <a href="?action=members-list"
+                   role="button">
+                    Liste des membres
+                </a>
+            </p>
         </header>
     </div>
     <main class="container">
         <?= $content ?>
+        <?php if (isset($_GET['action']) && $_GET['action'] != 'home') include 'home-button.php' ?>
     </main>
 </body>
 </html>

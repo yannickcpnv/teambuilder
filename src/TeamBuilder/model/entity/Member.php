@@ -22,7 +22,7 @@ class Member extends Entity
      *
      * @return Team[] An array of team.
      */
-    public function teams(): array
+    public function getTeams(): array
     {
         $query = "
             SELECT t.id, t.name, t.state_id
