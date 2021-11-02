@@ -113,4 +113,27 @@ class MemberTest extends TestCase
         $this->assertCount(0, Member::find(9)->getTeams());
         $this->assertCount(3, Member::find(10)->getTeams());
     }
+
+    public function testModerators()
+    {
+        $moderators = Member::whereRoleSlug("MOD");
+
+        $this->assertCount(5, $moderators);
+        $this->assertEquals("Xavier", $moderators[0]->name);
+        $this->assertEquals(2, $moderators[0]->role_id);
+    }
+
+    public function testIsModerator()
+    {
+        $member = Member::make(["name" => "XXX", "password" => 'XXXPa$$w0rd', "role_id" => 2]);
+
+        $this->assertTrue($member->isModerator());
+    }
+
+    public function testIsNotModerator()
+    {
+        $member = Member::make(["name" => "XXX", "password" => 'XXXPa$$w0rd', "role_id" => 1]);
+
+        $this->assertFalse($member->isModerator());
+    }
 }

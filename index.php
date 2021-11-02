@@ -15,20 +15,28 @@ if (!isset($_SESSION['web-user'])) {
 $action = $_GET['action'] ?? null;
 if ($action) {
     switch ($action) {
-        case 'home':
-        default:
-            (new HomeController())->home();
-            break;
         case 'members-list':
             (new MemberController())->membersList();
             break;
         case 'member-teams':
             (new MemberController())->memberTeams();
             break;
+        case 'moderators-list':
+            (new MemberController())->moderatorsList();
+            break;
         case 'team-details':
             isset($_GET['team-id'])
                 ? (new TeamController())->teamDetails($_GET['team-id'])
                 : (new HomeController())->home();
+            break;
+        case 'nominate-moderator':
+            isset($_GET['member-id'])
+                ? (new MemberController())->nominateModerator($_GET['member-id'])
+                : (new HomeController())->home();
+            break;
+        default:
+        case 'home':
+            (new HomeController())->home();
             break;
     }
 } else {

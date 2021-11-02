@@ -2,6 +2,8 @@
 
 namespace TeamBuilder\model\entity;
 
+use TeamBuilder\model\enums\RoleEnum;
+
 class Member extends Entity
 {
 
@@ -16,7 +18,6 @@ class Member extends Entity
     //endregion
 
     //region Methods
-
     /**
      * Get all teams of the member.
      *
@@ -40,16 +41,44 @@ class Member extends Entity
      * Search a member where value equal column.
      *
      * @param string $column The column.
-     * @param int    $value  The value searched.
+     * @param mixed  $value  The value searched.
      *
-     * @return array An array of members founds, empty if not found.
+     * @return Member[] An array of members founds, empty if not found.
      */
-    public static function where(string $column, int $value): array
+    public static function where(string $column, mixed $value): array
     {
-        $query = "SELECT * FROM members WHERE $column = :id";
+        $query = "SELECT * FROM members WHERE $column = :value";
 
-        return self::createDatabase()->fetchRecords($query, Member::class, ["id" => $value]);
+        return self::createDatabase()->fetchRecords($query, Member::class, ["value" => $value]);
     }
 
+    /**
+     * Search a member where the slug role equal value.
+     *
+     * @param string $slug The slug.
+     *
+     * @return Member[] An array of members founds by slug, empty if not found.
+     */
+    public static function whereRoleSlug(string $slug): array
+    {
+        $query = "
+            SELECT m.id, m.name, m.password, m.role_id
+            FROM members m
+                INNER JOIN roles r on m.role_id = r.id
+            WHERE slug=:slug
+        ";
+
+        return self::createDatabase()->fetchRecords($query, Member::class, ["slug" => $slug]);
+    }
+
+    /**
+     * Tell if the member is a moderator or not.
+     *
+     * @return bool True if moderator, false otherwise.
+     */
+    public function isModerator(): bool
+    {
+        return $this->role_id == RoleEnum::MOD;
+    }
     //endregion
 }

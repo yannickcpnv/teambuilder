@@ -31,7 +31,7 @@
                 </div>
             <?php
             endif ?>
-            <p>
+            <div>
                 <a href="?action=member-teams&member-id=<?= unserialize($_SESSION['web-user'])->id ?>"
                    role="button">
                     Mes équipes
@@ -40,7 +40,11 @@
                    role="button">
                     Liste des membres
                 </a>
-            </p>
+                <a href="?action=moderators-list"
+                   role="button">
+                    Liste des modérateurs
+                </a>
+            </div>
         </header>
     </div>
     <main class="container">

@@ -53,3 +53,8 @@ header {
 header hgroup > :last-child {
   color: var(--h3-color);
 }
+
+a[role="button"] {
+  margin-right: calc(var(--typography-spacing-vertical) / 4);
+  margin-bottom: var(--typography-spacing-vertical);
+}

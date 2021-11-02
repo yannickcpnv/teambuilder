@@ -1,10 +1,10 @@
 <?php
 
-namespace TeamBuilder\model\entity;
+namespace TeamBuilder\model\enums;
 
 use InvalidArgumentException;
 
-abstract class State
+class StateEnum extends Enum
 {
 
     public const WAIT_CHANG = 1;

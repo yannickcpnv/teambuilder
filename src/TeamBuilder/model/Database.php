@@ -29,11 +29,7 @@ class Database
 
     public static function getInstance(string $dsn = null, string $username = null, string $password = null): Database
     {
-        if (!isset(self::$instance)) {
-            self::$instance = new Database($dsn, $username, $password);
-        }
-
-        return self::$instance;
+        return self::$instance ?? new Database($dsn, $username, $password);
     }
 
     /**

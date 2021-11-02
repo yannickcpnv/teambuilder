@@ -2,7 +2,7 @@
 
 
 use TeamBuilder\model\entity\Team;
-use TeamBuilder\model\entity\State;
+use TeamBuilder\model\enums\StateEnum;
 use TeamBuilder\model\entity\TeamMember;
 
 /**@var Team $team */
@@ -15,7 +15,7 @@ $members = $team->getMembers();
     <article>
         <hgroup>
             <h1><?= $team->name ?></h1>
-            <h2><?= State::fromValue($team->state_id) ?></h2>
+            <h2><?= StateEnum::fromValue($team->state_id) ?></h2>
         </hgroup>
         <table>
             <summary><?= count($members) ?> Membres</summary>

@@ -29,9 +29,9 @@
         "phpunit/phpunit": "^9.5"
     },
     "require": {
-        "ext-pdo": "*",
-        "vlucas/phpdotenv": "^5.3",
         "ext-intl": "*",
-        "fortawesome/font-awesome": "^5.15"
+        "ext-pdo": "*",
+        "fortawesome/font-awesome": "^5.15",
+        "vlucas/phpdotenv": "^5.3"
     }
 }

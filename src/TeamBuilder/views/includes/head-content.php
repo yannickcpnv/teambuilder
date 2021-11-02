@@ -15,4 +15,5 @@
 <script defer src="/vendor/fortawesome/font-awesome/js/brands.js"></script>
 <script defer src="/vendor/fortawesome/font-awesome/js/solid.js"></script>
 <script defer src="/vendor/fortawesome/font-awesome/js/fontawesome.js"></script>
+<script defer src="/src/TeamBuilder/views/js/app.js"></script>
 

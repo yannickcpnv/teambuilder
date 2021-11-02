@@ -30,8 +30,8 @@ CREATE TABLE IF NOT EXISTS `teambuilder`.`roles`
     `slug` VARCHAR(10) NOT NULL,
     `name` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-    UNIQUE INDEX `slug_UNIQUE` (`slug` ASC) VISIBLE
+    UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+    UNIQUE INDEX `slug_UNIQUE` (`slug` ASC)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb3;
@@ -49,8 +49,8 @@ CREATE TABLE IF NOT EXISTS `teambuilder`.`members`
     `password` VARCHAR(500) NOT NULL,
     `role_id`  INT          NOT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-    INDEX `fk_members_roles_idx` (`role_id` ASC) VISIBLE,
+    UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+    INDEX `fk_members_roles_idx` (`role_id` ASC),
     CONSTRAINT `fk_members_roles`
         FOREIGN KEY (`role_id`)
             REFERENCES `teambuilder`.`roles` (`id`)
@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS `teambuilder`.`states`
     `slug` VARCHAR(10) NOT NULL,
     `name` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-    UNIQUE INDEX `slug_UNIQUE` (`slug` ASC) VISIBLE
+    UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+    UNIQUE INDEX `slug_UNIQUE` (`slug` ASC)
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = utf8mb3;
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `teambuilder`.`teams`
     `name`     VARCHAR(45) NOT NULL,
     `state_id` INT         NOT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-    INDEX `fk_teams_states1_idx` (`state_id` ASC) VISIBLE,
+    UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+    INDEX `fk_teams_states1_idx` (`state_id` ASC),
     CONSTRAINT `fk_teams_states1`
         FOREIGN KEY (`state_id`)
             REFERENCES `teambuilder`.`states` (`id`)
@@ -115,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `teambuilder`.`team_member`
     `membership_type` TINYINT NOT NULL COMMENT '0 = inactive\n1 = active\n2 = invitation\n3 = request',
     `is_captain`      TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `unique_membership` (`member_id` ASC, `team_id` ASC) VISIBLE,
-    INDEX `fk_team_member_members1_idx` (`member_id` ASC) VISIBLE,
-    INDEX `fk_team_member_teams1_idx` (`team_id` ASC) VISIBLE,
+    UNIQUE INDEX `unique_membership` (`member_id` ASC, `team_id` ASC),
+    INDEX `fk_team_member_members1_idx` (`member_id` ASC),
+    INDEX `fk_team_member_teams1_idx` (`team_id` ASC),
     CONSTRAINT `fk_team_member_members1`
         FOREIGN KEY (`member_id`)
             REFERENCES `teambuilder`.`members` (`id`)
