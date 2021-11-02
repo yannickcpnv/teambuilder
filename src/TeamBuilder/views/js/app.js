@@ -9,3 +9,9 @@ function confirmModeratorNomination (event)
     event.preventDefault()
   }
 }
+
+document.querySelectorAll('a').forEach(element => {
+  if (!!element.getElementsByClassName('fa-users-cog').length) {
+    element.addEventListener('click', confirmModeratorNomination)
+  }
+})

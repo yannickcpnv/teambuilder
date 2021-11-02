@@ -33,9 +33,7 @@ ob_start();
                         </td>
                         <td>
                             <?php if ($displayModNomination): ?>
-                                <a href="?action=nominate-moderator&member-id=<?= $member->id ?>"
-                                   onclick="confirmModeratorNomination(event)"
-                                >
+                                <a href="?action=nominate-moderator&member-id=<?= $member->id ?>">
                                     <i class="fas fa-users-cog"></i>
                                 </a>
                             <?php endif; ?>
