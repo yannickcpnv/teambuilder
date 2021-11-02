@@ -2,6 +2,14 @@
 
 TeamBuilder is a PHP application for the module PRW-1.
 
+## Requirements
+
+| Tools                                         | Version |
+|-----------------------------------------------|---------|
+| [Composer](https://getcomposer.org/download/) | 2.1.6   |
+| [Npm](https://nodejs.org/en/download/)        | 7.20.3  |
+| [Sass](https://sass-lang.com/install)         | 1.39.0  |
+
 ## Installation
 
 Use the package manager [composer](https://getcomposer.org/download/).
@@ -27,9 +35,10 @@ composer install
    
    WEB_USER_ID     = 0
    ```
-3. Enable php extensions :
+3. Enable php extensions in your php.ini :
    1. ext-pdo => Database access
    2. ext-intl => Internationalization, sort and compare utf8 strings, etc.
+4. If you work on the file _override_pico.scss_, run the command `composer sass:pico:watch`
 
 ## Test
 

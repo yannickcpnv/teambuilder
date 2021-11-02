@@ -22,8 +22,12 @@
         }
     ],
     "scripts": {
-        "post-install-cmd": "npm install",
-        "test": "vendor/bin/phpunit test --colors=always"
+        "post-install-cmd": [
+            "npm install",
+            "sass src/TeamBuilder/views/assets/scss/override_pico.scss src/TeamBuilder/views/assets/css/pico.css --quiet"
+        ],
+        "test": "vendor/bin/phpunit test --colors=always",
+        "sass:pico:watch": "sass src/TeamBuilder/views/assets/scss/override_pico.scss src/TeamBuilder/views/assets/css/pico.css --watch"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"

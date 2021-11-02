@@ -8,9 +8,7 @@ use TeamBuilder\controller\SessionController;
 require_once 'vendor/autoload.php';
 
 session_start();
-if (!isset($_SESSION['web-user'])) {
     (new SessionController())->createSession();
-}
 
 $action = $_GET['action'] ?? null;
 if ($action) {

@@ -194,3 +194,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+/src/TeamBuilder/views/assets/css/pico.*
