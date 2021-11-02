@@ -7,9 +7,14 @@ use TeamBuilder\model\entity\Team;
 class TeamController
 {
 
-    public function teamDetails(int $id)
+    /**
+     * Render details of a team.
+     *
+     * @param int $teamId The ID of the team.
+     */
+    public function teamDetails(int $teamId)
     {
-        $team = Team::find($id);
+        $team = Team::find($teamId);
 
         require 'src/TeamBuilder/views/team-details.php';
     }

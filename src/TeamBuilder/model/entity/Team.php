@@ -30,7 +30,12 @@ class Team extends Entity
         return self::createDatabase()->fetchRecords($query, TeamMember::class, $queryArray);
     }
 
-    public function getCaptain()
+    /**
+     * Get the team.
+     *
+     * @return false|Entity The captain.
+     */
+    public function getCaptain(): bool|Entity
     {
         $query = "
             SELECT m.id, m.name, m.password, m.role_id, tm.is_captain, tm.membership_type

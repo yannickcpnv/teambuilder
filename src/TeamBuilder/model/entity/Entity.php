@@ -3,6 +3,7 @@
 namespace TeamBuilder\model\entity;
 
 use PDOException;
+use JetBrains\PhpStorm\Pure;
 use TeamBuilder\model\Database;
 use TeamBuilder\model\Accessors;
 
@@ -19,15 +20,22 @@ abstract class Entity
 
     //region Methods
     /**
+     * Instantiate an entity.
      *
-     * @return \TeamBuilder\model\entity\Entity
-     * @var mixed|null
+     * @param array $fields - An associative array based on the fields of the entity.
+     *
+     * @return Entity The instantiated entity.
      */
     public static function make(array $fields): Entity
     {
         return static::hydrate($fields);
     }
 
+    /**
+     * Retrieve all models from database.
+     *
+     * @return Entity[] An array of all models.
+     */
     public static function all(): array
     {
         $tableName = self::getTableName();
@@ -36,6 +44,13 @@ abstract class Entity
         return self::createDatabase()->fetchRecords($query, static::class);
     }
 
+    /**
+     * Retrieve an entity from the database.
+     *
+     * @param int $id The ID.
+     *
+     * @return Entity|null The entity.
+     */
     public static function find(int $id): ?Entity
     {
         $tableName = self::getTableName();
@@ -46,6 +61,13 @@ abstract class Entity
         return $result ?: null;
     }
 
+    /**
+     * Delete an entity in the database.
+     *
+     * @param int $id The ID.
+     *
+     * @return bool True if success, otherwise false.
+     */
     public static function destroy(int $id): bool
     {
         $tableName = self::getTableName();
@@ -60,6 +82,11 @@ abstract class Entity
         }
     }
 
+    /**
+     * Create a new entity in the database.
+     *
+     * @return bool True if success, otherwise false.
+     */
     public function create(): bool
     {
         $columns = [];
@@ -82,6 +109,11 @@ abstract class Entity
         }
     }
 
+    /**
+     * Update the entity in the database.
+     *
+     * @return bool True if success, otherwise false.
+     */
     public function save(): bool
     {
         $array = [];
@@ -103,14 +135,19 @@ abstract class Entity
         }
     }
 
+    /**
+     * Delete the entity from the database.
+     *
+     * @return bool True if success, otherwise false.
+     */
     public function delete(): bool
     {
         return self::destroy($this->id);
     }
 
-    protected static function hydrate(array $fields): Entity
+    #[Pure] protected static function hydrate(array $fields): Entity
     {
-        $entity = new (get_called_class())();
+        $entity = new static();
 
         foreach ($fields as $key => $value) {
             if (property_exists(static::class, $key)) {
