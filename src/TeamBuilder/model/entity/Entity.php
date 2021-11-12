@@ -13,7 +13,7 @@ abstract class Entity
     use Accessors;
 
     //region Fields
-    protected const TABLE_NAME = '';
+    protected const TABLE_NAME     = '';
 
     protected int $id;
     //endregion
@@ -104,7 +104,10 @@ abstract class Entity
         try {
             $this->id = self::createDatabase()->insert($query, $this->toArray());
             return true;
-        } catch (PDOException) {
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                throw $e;
+            }
             return false;
         }
     }

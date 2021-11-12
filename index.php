@@ -13,6 +13,12 @@ session_start();
 $action = $_GET['action'] ?? null;
 if ($action) {
     switch ($action) {
+        case 'create-team':
+            (new TeamController())->showCreateTeam();
+            break;
+        case 'save-team':
+            (new TeamController())->createTeam($_POST['team']);
+            break;
         case 'members-list':
             (new MemberController())->membersList();
             break;

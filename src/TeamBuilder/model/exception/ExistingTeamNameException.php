@@ -2,7 +2,8 @@
 
 namespace TeamBuilder\model\exception;
 
-class ExistingTeamNameException
+class ExistingTeamNameException extends \Exception
 {
 
+    protected $message = 'Le nom de cette équipe existe déjà !';
 }

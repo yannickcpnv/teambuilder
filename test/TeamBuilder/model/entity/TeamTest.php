@@ -2,11 +2,17 @@
 
 namespace TeamBuilder\model\entity;
 
+use TeamBuilder\TestHelper;
 use PHPUnit\Framework\TestCase;
 use TeamBuilder\model\exception\ExistingTeamNameException;
 
 class TeamTest extends TestCase
 {
+
+    protected function setUp(): void
+    {
+        TestHelper::createDatabase();
+    }
 
     /**
      * @covers \TeamBuilder\model\entity\Team::all()
@@ -39,13 +45,13 @@ class TeamTest extends TestCase
 
     public function testCreate_TeamMemberCreatedWithCaptainRole()
     {
-        $connectedUser = Member::make(['id' => 14, 'name' => 'James']);
-        $team = Team::make(['name' => 'MI6', 'state_id' => 1]);
+        $connectedUser = Member::make(['id' => 27, 'name' => 'James']);
+        $team = Team::make(['name' => 'MI6']);
 
         $result = $team->create($connectedUser);
 
         $this->assertTrue($result);
-        $teamMember = TeamMember::find($connectedUser->id);
+        $teamMember = TeamMember::findComposite($team->id, $connectedUser->id);
         $this->assertInstanceOf(TeamMember::class, $teamMember);
         $this->assertTrue($teamMember->is_captain);
     }

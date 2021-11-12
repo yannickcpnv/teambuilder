@@ -2,6 +2,9 @@
 
 namespace TeamBuilder\model\entity;
 
+use PDOException;
+use TeamBuilder\model\exception\ExistingTeamNameException;
+
 class Team extends Entity
 {
 
@@ -15,7 +18,18 @@ class Team extends Entity
     //endregion
 
     //region Methods
-    public function getMembers(): array
+    public static function make(array $fields): Team
+    {
+        $fields['state_id'] = 1;
+        return parent::make($fields);
+    }
+
+    /**
+     * Get all members of the team.
+     *
+     * @return array All the members.
+     */
+    public function getTeamMembers(): array
     {
         $query = "
             SELECT m.id, m.name, m.password, m.role_id, tm.is_captain, tm.membership_type
@@ -45,6 +59,37 @@ class Team extends Entity
         ";
 
         return self::createDatabase()->fetchOne($query, TeamMember::class);
+    }
+
+    /**
+     * Create a new team in the database.
+     *
+     * @param Member|null $connectedMember
+     *
+     * @return bool
+     * @throws ExistingTeamNameException Throw an exception if the name of the team
+     */
+    public function create(Member $connectedMember = null): bool
+    {
+        try {
+            if (!parent::create()) {
+                return false;
+            }
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1062)
+            throw new ExistingTeamNameException();
+        }
+
+        $teamMember = TeamMember::make(
+            [
+                'member_id' => $connectedMember->id,
+                'team_id' => $this->id,
+                'membership_type' => 1,
+                'is_captain' => true,
+            ]
+        );
+
+        return $teamMember->create();
     }
     //endregion
 }
