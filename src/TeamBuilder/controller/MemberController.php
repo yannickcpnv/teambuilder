@@ -3,8 +3,8 @@
 namespace TeamBuilder\controller;
 
 use TeamBuilder\model\ArrayHelpers;
+use TeamBuilder\model\enum\RoleEnum;
 use TeamBuilder\model\entity\Member;
-use TeamBuilder\model\enums\RoleEnum;
 
 class MemberController
 {

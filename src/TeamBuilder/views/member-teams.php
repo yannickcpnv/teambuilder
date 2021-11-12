@@ -1,7 +1,7 @@
 <?php
 
 use TeamBuilder\model\entity\Team;
-use TeamBuilder\model\enums\StateEnum;
+use TeamBuilder\model\enum\StateEnum;
 
 /* @var Team[] $teams */
 

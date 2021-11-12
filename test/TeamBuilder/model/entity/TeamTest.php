@@ -3,6 +3,7 @@
 namespace TeamBuilder\model\entity;
 
 use PHPUnit\Framework\TestCase;
+use TeamBuilder\model\exception\ExistingTeamNameException;
 
 class TeamTest extends TestCase
 {
@@ -34,6 +35,29 @@ class TeamTest extends TestCase
         $team->state_id = 1;
         $this->assertTrue($team->create());
         $this->assertFalse($team->create());
+    }
+
+    public function testCreate_TeamMemberCreatedWithCaptainRole()
+    {
+        $connectedUser = Member::make(['id' => 14, 'name' => 'James']);
+        $team = Team::make(['name' => 'MI6', 'state_id' => 1]);
+
+        $result = $team->create($connectedUser);
+
+        $this->assertTrue($result);
+        $teamMember = TeamMember::find($connectedUser->id);
+        $this->assertInstanceOf(TeamMember::class, $teamMember);
+        $this->assertTrue($teamMember->is_captain);
+    }
+
+    public function testCreate_CannotHaveExistingName()
+    {
+        $team = Team::make(['name' => 'Suicide Squad', 'state_id' => 1]);
+
+        $this->expectException(ExistingTeamNameException::class);
+        $this->expectExceptionMessage('Le nom de cette équipe existe déjà !');
+
+        $team->create();
     }
 
     /**

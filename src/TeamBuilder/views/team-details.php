@@ -2,7 +2,7 @@
 
 
 use TeamBuilder\model\entity\Team;
-use TeamBuilder\model\enums\StateEnum;
+use TeamBuilder\model\enum\StateEnum;
 use TeamBuilder\model\entity\TeamMember;
 
 /**@var Team $team */

@@ -2,7 +2,7 @@
 
 namespace TeamBuilder\model\entity;
 
-use TeamBuilder\model\enums\RoleEnum;
+use TeamBuilder\model\enum\RoleEnum;
 
 class Member extends Entity
 {

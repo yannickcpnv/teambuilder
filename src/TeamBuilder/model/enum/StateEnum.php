@@ -1,6 +1,6 @@
 <?php
 
-namespace TeamBuilder\model\enums;
+namespace TeamBuilder\model\enum;
 
 use InvalidArgumentException;
 
