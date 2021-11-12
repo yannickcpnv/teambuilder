@@ -177,10 +177,10 @@ VALUES (1, 'WAIT_CHANG', 'Attente de chagement'),
        (4, 'COMMITTED', 'Engagée'),
        (5, 'RECRUTING', 'Recrutement');
 
-INSERT INTO `status` (`slug`, `name`)
-VALUES ('ACTIVE', 'Actif'),
-       ('INACTIVE', 'Inactif'),
-       ('BANNED', 'Banni');
+INSERT INTO `status` (`id`, `slug`, `name`)
+VALUES (1, 'ACTIVE', 'Actif'),
+       (2, 'INACTIVE', 'Inactif'),
+       (3, 'BANNED', 'Banni');
 
 -- -----------------------------------------------------
 -- Table `teams` - Data

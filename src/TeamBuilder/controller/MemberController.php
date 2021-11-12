@@ -51,4 +51,12 @@ class MemberController
 
         self::moderatorsList();
     }
+
+    /**
+     * Call the view to show profil page in read mode.
+     */
+    public function readProfil()
+    {
+        require 'src/TeamBuilder/views/profil-read.php';
+    }
 }

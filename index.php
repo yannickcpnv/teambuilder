@@ -38,6 +38,9 @@ if ($action) {
                 ? (new MemberController())->nominateModerator($_GET['member-id'])
                 : (new HomeController())->home();
             break;
+        case 'read-profil':
+            (new MemberController())->readProfil();
+            break;
         default:
         case 'home':
             (new HomeController())->home();
