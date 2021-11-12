@@ -1,6 +1,8 @@
 <?php
 
 use TeamBuilder\model\entity\Member;
+use TeamBuilder\model\enum\RoleEnum;
+use TeamBuilder\model\enum\StatusEnum;
 
 
 /** @var Member $member */
@@ -16,24 +18,31 @@ ob_start();
     </p>
 <?php endif; ?>
 
-    <form method="post" action="?action=edit-team-member">
+<?php if (isset($successMessage)): ?>
+    <p>
+        <ins><?= $successMessage ?></ins>
+    </p>
+<?php endif; ?>
+
+
+    <form method="post" action="?action=save-member">
         <label for="firstname">
             Nom
             <input
               type="text"
               id="firstname"
               name="member[name]"
-              placeholder="Inscrivez le nom du membre"
+              value="<?= $member->name ?>"
               required
         </label>
 
         <label for="password">
             Mot de passe
             <input
-              type="text"
+              type="password"
               id="password"
               name="member[password]"
-              placeholder="Inscrivez le mot de passe"
+              value="<?= $member->password ?>"
               required
                 <?= $member->isModerator() ? 'disabled' : '' ?>>
         </label>
@@ -44,8 +53,8 @@ ob_start();
               type="text"
               id="role"
               name="member[role]"
-              placeholder="Sélectionnez le role"
               required
+              value="<?= RoleEnum::fromValue($member->role_id) ?>"
                 <?= $member->isModerator() ? 'disabled' : '' ?>>
         </label>
 
@@ -55,8 +64,8 @@ ob_start();
               type="text"
               id="status"
               name="member[status]"
-              placeholder="Sélectionnez le statut"
               required
+              value="<?= StatusEnum::fromValue($member->status_id) ?>"
                 <?= $member->isModerator() ? 'disabled' : '' ?>>
         </label>
 

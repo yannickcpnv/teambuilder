@@ -82,4 +82,17 @@ class MemberController
 
         require 'src/TeamBuilder/views/profil-edit.php';
     }
+
+    /**
+     * Save a member passed in form.
+     *
+     * @param array $memberForm The member to save in the database.
+     */
+    public function saveMember(array $memberForm)
+    {
+        Member::make($memberForm);
+        $test = '';
+
+        require 'src/TeamBuilder/views/profil-edit.php';
+    }
 }

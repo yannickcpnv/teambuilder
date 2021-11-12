@@ -14,6 +14,7 @@ class Member extends Entity
     protected string $name;
     protected string $password;
     protected int    $role_id;
+    protected int    $status_id;
 
     //endregion
 

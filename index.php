@@ -44,6 +44,9 @@ if ($action) {
         case 'edit-profil':
             (new MemberController())->editProfil($_GET['member-id']);
             break;
+        case 'save-member':
+            (new MemberController())->saveMember($_POST['member']);
+            break;
         default:
         case 'home':
             (new HomeController())->home();
