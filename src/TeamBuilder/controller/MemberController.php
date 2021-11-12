@@ -58,6 +58,13 @@ class MemberController
     public function readProfil()
     {
         $connectedMember = (new SessionController())->getUser();
+        $teams = $connectedMember->getTeams();
+        $teamsWhereIsCaptain = array_filter($teams, function ($team) use ($connectedMember) {
+            return $team->getCaptain()->id === $connectedMember->id;
+        });
+        $teamsWhereIsNotCaptain = array_filter($teams, function ($team) use ($connectedMember) {
+            return $team->getCaptain()->id !== $connectedMember->id;
+        });
         require 'src/TeamBuilder/views/profil-read.php';
     }
 }
