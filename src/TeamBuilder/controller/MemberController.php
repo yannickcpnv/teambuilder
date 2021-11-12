@@ -78,6 +78,8 @@ class MemberController
      */
     public function editProfil(int $memberId)
     {
+        $member = Member::find($memberId);
+
         require 'src/TeamBuilder/views/profil-edit.php';
     }
 }
