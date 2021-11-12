@@ -22,7 +22,7 @@ ob_start();
                     <?php $displayModNomination = !$member->isModerator()
                                                   && unserialize($_SESSION['web-user'])->isModerator() ?>
                     <tr>
-                        <td><?= $member->name ?></td>
+                        <td><a href="?action=read-profil&member-id=<?= $member->id ?>"><?= $member->name ?></a></td>
                         <td>
                             <?= implode(
                                 ", ",
