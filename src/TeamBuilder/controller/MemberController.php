@@ -57,6 +57,7 @@ class MemberController
      */
     public function readProfil()
     {
+        $connectedMember = (new SessionController())->getUser();
         require 'src/TeamBuilder/views/profil-read.php';
     }
 }
