@@ -2,10 +2,16 @@
 
 namespace TeamBuilder\model\entity;
 
+use TeamBuilder\TestHelper;
 use PHPUnit\Framework\TestCase;
 
 class RoleTest extends TestCase
 {
+
+    protected function setUp(): void
+    {
+        TestHelper::createDatabase();
+    }
 
     /**
      * @covers \TeamBuilder\model\entity\Role::all

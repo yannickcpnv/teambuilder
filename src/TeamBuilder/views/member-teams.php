@@ -8,6 +8,8 @@ use TeamBuilder\model\enum\StateEnum;
 ob_start();
 ?>
 
+    <h1>Mes équipes</h1>
+
     <figure>
         <table>
             <thead>
@@ -23,7 +25,7 @@ ob_start();
                 foreach ($teams as $team): ?>
                     <tr>
                         <td><a href="?action=team-details&team-id=<?= $team->id ?>"><?= $team->name ?></a></td>
-                        <td><?= count($team->getMembers()) ?></td>
+                        <td><?= count($team->getTeamMembers()) ?></td>
                         <td><?= $team->getCaptain()->name ?></td>
                         <td><?= StateEnum::fromValue($team->state_id) ?></td>
                     </tr>

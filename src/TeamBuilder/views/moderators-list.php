@@ -5,6 +5,8 @@
 ob_start();
 ?>
 
+    <h1>Liste des modérateurs</h1>
+
     <figure>
         <table>
             <thead>

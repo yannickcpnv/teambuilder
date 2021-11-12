@@ -19,7 +19,7 @@
         <header class="container">
             <hgroup>
                 <h1>Team Builder</h1>
-                <h2>Application for the Joutes teams in CPNV</h2>
+                <h2>Application pour les joutes du CPNV</h2>
             </hgroup>
             <?php
             if (isset($_SESSION['web-user'])): ?>
@@ -41,6 +41,11 @@
                     <a href="?action=moderators-list"
                        role="button">
                         Liste des modérateurs
+                    </a>
+                    <a class="outline"
+                       href="?action=create-team"
+                       role="button">
+                        <i class='fas fa-plus'></i>
                     </a>
                 </div>
             <?php
