@@ -56,6 +56,9 @@ ob_start();
                 <td><?= StatusEnum::fromValue($member->role_id) ?></td>
             </tr>
         </table>
+        <div class="flex flex-end">
+            <a href="?action=edit-profil&member-id=<?= $member->id ?>" role="button">Passer en mode édition</a>
+        </div>
     </article>
 
 <?php

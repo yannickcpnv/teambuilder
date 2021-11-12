@@ -8,7 +8,7 @@ use TeamBuilder\controller\SessionController;
 require_once 'vendor/autoload.php';
 
 session_start();
-    (new SessionController())->createSession();
+(new SessionController())->createSession();
 
 $action = $_GET['action'] ?? null;
 if ($action) {
@@ -40,6 +40,9 @@ if ($action) {
             break;
         case 'read-profil':
             (new MemberController())->readProfil($_GET['member-id']);
+            break;
+        case 'edit-profil':
+            (new MemberController())->editProfil($_GET['member-id']);
             break;
         default:
         case 'home':

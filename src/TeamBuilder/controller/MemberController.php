@@ -67,6 +67,17 @@ class MemberController
         $teamsWhereIsNotCaptain = array_filter($teams, function ($team) use ($member) {
             return $team->getCaptain()->id !== $member->id;
         });
+
         require 'src/TeamBuilder/views/profil-read.php';
+    }
+
+    /**
+     * Call the view to show profil page in edit mode.
+     *
+     * @param int $memberId The ID of the member to edit details.
+     */
+    public function editProfil(int $memberId)
+    {
+        require 'src/TeamBuilder/views/profil-edit.php';
     }
 }
