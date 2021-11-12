@@ -20,7 +20,7 @@
             <hgroup>
                 <h1>Team Builder</h1>
                 <h2>Application pour les joutes du CPNV</h2>
-                <h3>Version: Début Examen - Yannick</h3>
+                <h3>Version: Fin Examen - Yannick</h3>
             </hgroup>
             <?php
             if (isset($_SESSION['web-user'])): ?>

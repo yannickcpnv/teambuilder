@@ -25,6 +25,7 @@ ob_start();
 <?php endif; ?>
 
 
+    <!--TODO : Moderator only last two input-->
     <form method="post" action="?action=save-member">
         <label for="firstname">
             Nom
@@ -44,7 +45,7 @@ ob_start();
               name="member[password]"
               value="<?= $member->password ?>"
               required
-                <?= $member->isModerator() ? 'disabled' : '' ?>>
+                <?= !$member->isModerator() ? 'disabled' : '' ?>>
         </label>
 
         <label for="role">
@@ -55,7 +56,7 @@ ob_start();
               name="member[role]"
               required
               value="<?= RoleEnum::fromValue($member->role_id) ?>"
-                <?= $member->isModerator() ? 'disabled' : '' ?>>
+                <?= !$member->isModerator() ? 'disabled' : '' ?>>
         </label>
 
         <label for="status">
@@ -66,7 +67,7 @@ ob_start();
               name="member[status]"
               required
               value="<?= StatusEnum::fromValue($member->status_id) ?>"
-                <?= $member->isModerator() ? 'disabled' : '' ?>>
+                <?= !$member->isModerator() ? 'disabled' : '' ?>>
         </label>
 
         <!-- Button -->

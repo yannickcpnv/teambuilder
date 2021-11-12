@@ -90,8 +90,8 @@ class MemberController
      */
     public function saveMember(array $memberForm)
     {
-        Member::make($memberForm);
-        $test = '';
+        $member = Member::make($memberForm);
+        $member->save();
 
         require 'src/TeamBuilder/views/profil-edit.php';
     }
