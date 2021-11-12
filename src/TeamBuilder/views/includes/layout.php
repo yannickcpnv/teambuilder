@@ -27,7 +27,7 @@
                 <div class="flex flex-end">
                     <p>
                         Vous êtes connecté en tant que :
-                        <a href="?action=read-profil">
+                        <a href="?action=read-profil&member-id=<?= unserialize($_SESSION['web-user'])->id ?>">
                             <strong><?= unserialize($_SESSION['web-user'])->name ?></strong>
                         </a>
                     </p>

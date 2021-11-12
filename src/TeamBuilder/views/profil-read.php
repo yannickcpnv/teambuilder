@@ -6,7 +6,7 @@ use TeamBuilder\model\enum\RoleEnum;
 use TeamBuilder\model\enum\StatusEnum;
 
 
-/** @var Member $connectedMember */
+/** @var Member $member */
 /** @var Team[] $teams */
 /** @var Team[] $teamsWhereIsCaptain */
 /** @var Team[] $teamsWhereIsNotCaptain */
@@ -14,11 +14,11 @@ use TeamBuilder\model\enum\StatusEnum;
 ob_start();
 ?>
 
-    <h1>Consultation de votre profil</h1>
+    <h1>Détails du profil</h1>
 
     <article>
         <hgroup>
-            <h2><?= $connectedMember->name ?></h2>
+            <h2><?= $member->name ?></h2>
             <h3>
                 <?php if (!count($teams)): ?>
                     <div>Ce membre ne fait partie d'aucune équipe</div>
@@ -49,11 +49,11 @@ ob_start();
         <table>
             <tr>
                 <td>Role</td>
-                <td><?= RoleEnum::fromValue($connectedMember->role_id) ?></td>
+                <td><?= RoleEnum::fromValue($member->role_id) ?></td>
             </tr>
             <tr>
                 <td>Statut</td>
-                <td><?= StatusEnum::fromValue($connectedMember->role_id) ?></td>
+                <td><?= StatusEnum::fromValue($member->role_id) ?></td>
             </tr>
         </table>
     </article>

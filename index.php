@@ -39,7 +39,7 @@ if ($action) {
                 : (new HomeController())->home();
             break;
         case 'read-profil':
-            (new MemberController())->readProfil();
+            (new MemberController())->readProfil($_GET['member-id']);
             break;
         default:
         case 'home':

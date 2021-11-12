@@ -54,16 +54,18 @@ class MemberController
 
     /**
      * Call the view to show profil page in read mode.
+     *
+     * @param int $memberId The ID of the member to display details.
      */
-    public function readProfil()
+    public function readProfil(int $memberId)
     {
-        $connectedMember = (new SessionController())->getUser();
-        $teams = $connectedMember->getTeams();
-        $teamsWhereIsCaptain = array_filter($teams, function ($team) use ($connectedMember) {
-            return $team->getCaptain()->id === $connectedMember->id;
+        $member = Member::find($memberId);
+        $teams = $member->getTeams();
+        $teamsWhereIsCaptain = array_filter($teams, function ($team) use ($member) {
+            return $team->getCaptain()->id === $member->id;
         });
-        $teamsWhereIsNotCaptain = array_filter($teams, function ($team) use ($connectedMember) {
-            return $team->getCaptain()->id !== $connectedMember->id;
+        $teamsWhereIsNotCaptain = array_filter($teams, function ($team) use ($member) {
+            return $team->getCaptain()->id !== $member->id;
         });
         require 'src/TeamBuilder/views/profil-read.php';
     }
