@@ -19,8 +19,8 @@ composer install
 
 ## Database
 
-In the folder _sql_, you will find some scripts, run `create_teambuilder_and_inserts.sql` to create the database **
-teambuilder** and insert data.
+In the folder _sql_, you will find some scripts, run `create_teambuilder_and_inserts.sql` to create the database
+**teambuilder** and insert data.
 
 Use an existing user or create a new one
 
