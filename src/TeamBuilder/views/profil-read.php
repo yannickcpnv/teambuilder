@@ -7,6 +7,7 @@ use TeamBuilder\model\enum\StatusEnum;
 
 
 /** @var Member $connectedMember */
+/** @var Team[] $teams */
 /** @var Team[] $teamsWhereIsCaptain */
 /** @var Team[] $teamsWhereIsNotCaptain */
 
@@ -19,25 +20,29 @@ ob_start();
         <hgroup>
             <h2><?= $connectedMember->name ?></h2>
             <h3>
-                <?php if (count($teamsWhereIsCaptain) > 0): ?>
-                    <div>Capitaine de : <?= implode(
-                            ", ",
-                            array_map(function ($team) {
-                                return "<a href=?action=team-details&team-id=" . $team->id . ">
+                <?php if (!count($teams)): ?>
+                    <div>Ce membre ne fait partie d'aucune équipe</div>
+                <?php else: ?>
+                    <?php if (count($teamsWhereIsCaptain) > 0): ?>
+                        <div>Capitaine de : <?= implode(
+                                ", ",
+                                array_map(function ($team) {
+                                    return "<a href=?action=team-details&team-id=" . $team->id . ">
                                                 " . $team->name
-                                       . "</a>";
-                            }, $teamsWhereIsCaptain)
-                        ) ?></div>
-                <?php endif; ?>
-                <?php if (count($teamsWhereIsNotCaptain)): ?>
-                    <div>Membre de : <?= implode(
-                            ", ",
-                            array_map(function ($team) {
-                                return "<a href=?action=team-details&team-id=" . $team->id . ">
+                                           . "</a>";
+                                }, $teamsWhereIsCaptain)
+                            ) ?></div>
+                    <?php endif; ?>
+                    <?php if (count($teamsWhereIsNotCaptain)): ?>
+                        <div>Membre de : <?= implode(
+                                ", ",
+                                array_map(function ($team) {
+                                    return "<a href=?action=team-details&team-id=" . $team->id . ">
                                                 " . $team->name
-                                       . "</a>";
-                            }, $teamsWhereIsNotCaptain)
-                        ) ?></div>
+                                           . "</a>";
+                                }, $teamsWhereIsNotCaptain)
+                            ) ?></div>
+                    <?php endif; ?>
                 <?php endif; ?>
             </h3>
         </hgroup>
