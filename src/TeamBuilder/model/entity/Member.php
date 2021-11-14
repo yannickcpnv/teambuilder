@@ -2,7 +2,9 @@
 
 namespace TeamBuilder\model\entity;
 
+use PDOException;
 use TeamBuilder\model\enum\RoleEnum;
+use TeamBuilder\model\exception\ExistingValueException;
 
 class Member extends Entity
 {
@@ -70,6 +72,23 @@ class Member extends Entity
         ";
 
         return self::createDatabase()->fetchRecords($query, Member::class, ["slug" => $slug]);
+    }
+
+    /**
+     *
+     *
+     * @return bool
+     * @throws \TeamBuilder\model\exception\ExistingValueException
+     */
+    public function save(): bool
+    {
+        try {
+            return parent::save();
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1062)
+                throw new ExistingValueException('Le nom de ce membre existe déjà');
+            throw $e;
+        }
     }
 
     /**

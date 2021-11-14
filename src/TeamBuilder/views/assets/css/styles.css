@@ -58,3 +58,9 @@ a[role="button"] {
   margin-right: calc(var(--typography-spacing-vertical) / 4);
   margin-bottom: var(--typography-spacing-vertical);
 }
+
+input:not([type="submit"]):not([type="button"]):not([type="reset"])[readonly], select[readonly], textarea[readonly] {
+  --background-color: var(--form-element-disabled-background-color);
+  --border-color: var(--form-element-disabled-border-color);
+  opacity: var(--form-element-disabled-opacity);
+}

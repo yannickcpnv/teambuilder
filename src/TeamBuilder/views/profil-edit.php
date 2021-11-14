@@ -27,6 +27,7 @@ ob_start();
 
     <!--TODO : Moderator only last two input-->
     <form method="post" action="?action=save-member">
+        <input type="hidden" name="member[id]" value="<?= $member->id ?>">
         <label for="firstname">
             Nom
             <input
@@ -35,6 +36,7 @@ ob_start();
               name="member[name]"
               value="<?= $member->name ?>"
               required
+                <?= $member->isModerator() ? 'readonly' : '' ?>>
         </label>
 
         <label for="password">
@@ -45,30 +47,26 @@ ob_start();
               name="member[password]"
               value="<?= $member->password ?>"
               required
-                <?= !$member->isModerator() ? 'disabled' : '' ?>>
+              readonly
         </label>
 
-        <label for="role">
-            Role
-            <input
-              type="text"
-              id="role"
-              name="member[role]"
-              required
-              value="<?= RoleEnum::fromValue($member->role_id) ?>"
-                <?= !$member->isModerator() ? 'disabled' : '' ?>>
-        </label>
+        <label for="role">Role</label>
+        <select id="role" name="member[role]" required <?= !$member->isModerator() ? 'readonly' : '' ?>>
+            <?php foreach (RoleEnum::getValues() as $value): ?>
+                <option value="<?= $value ?>" <?= $member->role_id == (int)$value ? 'selected' : '' ?>>
+                    <?= RoleEnum::fromValue((int)$value) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-        <label for="status">
-            Statut
-            <input
-              type="text"
-              id="status"
-              name="member[status]"
-              required
-              value="<?= StatusEnum::fromValue($member->status_id) ?>"
-                <?= !$member->isModerator() ? 'disabled' : '' ?>>
-        </label>
+        <label for="status">Status</label>
+        <select name="member[status]" id="role" required <?= !$member->isModerator() ? 'readonly' : '' ?>>
+            <?php foreach (StatusEnum::getValues() as $value): ?>
+                <option value="<?= $value ?>" <?= $member->status_id == (int)$value ? 'selected' : '' ?>>
+                    <?= StatusEnum::fromValue((int)$value) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
         <!-- Button -->
         <button type="submit">Sauvegarder</button>

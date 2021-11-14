@@ -5,6 +5,7 @@ namespace TeamBuilder\controller;
 use TeamBuilder\model\ArrayHelpers;
 use TeamBuilder\model\enum\RoleEnum;
 use TeamBuilder\model\entity\Member;
+use TeamBuilder\model\exception\ExistingValueException;
 
 class MemberController
 {
@@ -90,8 +91,27 @@ class MemberController
      */
     public function saveMember(array $memberForm)
     {
-        $member = Member::make($memberForm);
-        $member->save();
+        $connectedMember = (new SessionController())->getUser();
+        $memberAsArray = ['id' => $memberForm['id']];
+        $memberAsArray = $connectedMember->isModerator()
+            ? array_merge($memberAsArray, [
+                'role_id'   => $memberForm['role'],
+                'status_id' => $memberForm['status'],
+            ])
+            : array_merge($memberAsArray, [
+                'name' => $memberForm['name'],
+            ]);
+
+        $member = Member::make($memberAsArray);
+
+        try {
+            $member->save();
+            $successMessage = "Le membre a bien été sauvegardé";
+        } catch (ExistingValueException $e) {
+            $errorMessage = $e->getMessage();
+        }
+
+        $member = Member::find($memberForm['id']);
 
         require 'src/TeamBuilder/views/profil-edit.php';
     }

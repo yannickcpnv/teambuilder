@@ -2,6 +2,8 @@
 
 namespace TeamBuilder\model\enum;
 
+use ReflectionClass;
+
 abstract class Enum
 {
 
@@ -15,4 +17,9 @@ abstract class Enum
      * @return mixed The match from the value.
      */
     abstract public static function fromValue(int $value);
+
+    public static function getValues(): array
+    {
+        return (new ReflectionClass(static::class))->getConstants();
+    }
 }

@@ -3,21 +3,29 @@
 namespace TeamBuilder\controller;
 
 use TeamBuilder\model\entity\Team;
-use TeamBuilder\model\exception\ExistingTeamNameException;
+use TeamBuilder\model\exception\ExistingValueException;
 
 class TeamController
 {
 
-    public function showCreateTeam()
+    /**
+     * Render the view to create a team.
+     */
+    public function renderCreateTeam()
     {
         require 'src/TeamBuilder/views/create_team.php';
     }
 
+    /**
+     * Create a new team.
+     *
+     * @param array $teamForm The team form passed by the user.
+     */
     public function createTeam(array $teamForm)
     {
         try {
             Team::make(['name' => $teamForm['name']])->create((new SessionController())->getUser());
-        } catch (ExistingTeamNameException $e) {
+        } catch (ExistingValueException $e) {
             $errorMessage = $e->getMessage();
             require 'src/TeamBuilder/views/create_team.php';
         }

@@ -14,7 +14,7 @@ $action = $_GET['action'] ?? null;
 if ($action) {
     switch ($action) {
         case 'create-team':
-            (new TeamController())->showCreateTeam();
+            (new TeamController())->renderCreateTeam();
             break;
         case 'save-team':
             (new TeamController())->createTeam($_POST['team']);

@@ -3,7 +3,7 @@
 namespace TeamBuilder\model\entity;
 
 use PDOException;
-use TeamBuilder\model\exception\ExistingTeamNameException;
+use TeamBuilder\model\exception\ExistingValueException;
 
 class Team extends Entity
 {
@@ -67,7 +67,7 @@ class Team extends Entity
      * @param Member|null $connectedMember
      *
      * @return bool
-     * @throws ExistingTeamNameException Throw an exception if the name of the team
+     * @throws ExistingValueException Throw an exception if the name of the team
      */
     public function create(Member $connectedMember = null): bool
     {
@@ -76,8 +76,10 @@ class Team extends Entity
                 return false;
             }
         } catch (PDOException $e) {
-            if ($e->errorInfo[1] == 1062)
-            throw new ExistingTeamNameException();
+            if ($e->errorInfo[1] == 1062) {
+                throw new ExistingValueException("Le nom de cette équipe existe déjà !");
+            }
+            throw $e;
         }
 
         $teamMember = TeamMember::make(

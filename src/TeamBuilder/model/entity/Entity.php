@@ -26,7 +26,7 @@ abstract class Entity
      *
      * @return Entity The instantiated entity.
      */
-    public static function make(array $fields): Entity
+    #[Pure] public static function make(array $fields): Entity
     {
         return static::hydrate($fields);
     }
@@ -133,7 +133,10 @@ abstract class Entity
         try {
             self::createDatabase()->update($query, $this->toArray());
             return true;
-        } catch (PDOException) {
+        } catch (PDOException $e) {
+            if ($e->errorInfo[1] == 1062) {
+                throw $e;
+            }
             return false;
         }
     }
