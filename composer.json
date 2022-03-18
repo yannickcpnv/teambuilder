@@ -1,5 +1,6 @@
 {
     "name": "yannick.baudraz/teambuilder",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "TeamBuilder\\": [
